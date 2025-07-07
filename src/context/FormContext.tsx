@@ -1,0 +1,129 @@
+"use client";
+
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { FormInterface, FormElement } from "@/interfaces/Form.interface";
+
+interface FormContextType {
+  elements: FormElement[];
+  selectedUuid: string | null;
+  addElement: (type: FormElement["type"]) => void;
+  selectElement: (uuid: string) => void;
+  updateElement: (uuid: string, updates: Partial<FormElement>) => void;
+  removeElement: (uuid: string) => void;
+  moveElement: (uuid: string, dir: "up" | "down") => void;
+}
+
+const FormContext = createContext<FormContextType | undefined>(undefined);
+
+export const useFormContext = () => {
+  const ctx = useContext(FormContext);
+  if (!ctx) throw new Error("FormContext not found");
+  return ctx;
+};
+
+interface FormProviderProps {
+  children: ReactNode;
+  form: FormInterface;
+}
+
+export const FormProvider = ({ children, form }: FormProviderProps) => {
+  const [elements, setElements] = useState<FormElement[]>(form.elements || []);
+  const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
+
+  // Sync elements when form changes (e.g. on load)
+  useEffect(() => {
+    setElements(form.elements || []);
+  }, [form]);
+
+  // Auto-save elements changes to localStorage & update form in state
+  useEffect(() => {
+    // Update form object (local in this context)
+    form.elements = elements;
+
+    // Update localStorage forms list
+    const forms: FormInterface[] = JSON.parse(localStorage.getItem("forms") || "[]");
+    const updatedForms = forms.map((f) => (f.uuid === form.uuid ? { ...form, elements } : f));
+    localStorage.setItem("forms", JSON.stringify(updatedForms));
+  }, [elements, form]);
+
+  const addElement = (type: FormElement["type"]) => {
+    const uuid = uuidv4();
+    const nextOrder = elements.length > 0 ? Math.max(...elements.map((e) => e.order)) + 1 : 1;
+
+    let newElement: FormElement;
+
+    if (type === "sex") {
+      newElement = { uuid, type: "sex", label: "Sexe", name: "sexe", required: true, order: nextOrder };
+    } else if (type === "date") {
+      newElement = { uuid, type: "date", label: "Date", name: "", required: false, order: nextOrder };
+    } else if (type === "number") {
+      newElement = {
+        uuid,
+        type: "number",
+        label: "Nombre",
+        name: "",
+        placeholder: "Entrez un nombre",
+        required: false,
+        order: nextOrder,
+        min: undefined,
+        max: undefined,
+      };
+    } else {
+      newElement = { uuid, type, label: `New ${type}`, name: "", required: false, order: nextOrder };
+    }
+
+    setElements((prev) => [...prev, newElement]);
+    setSelectedUuid(uuid);
+  };
+
+  const selectElement = (uuid: string) => {
+    setSelectedUuid(uuid);
+  };
+
+  const updateElement = (uuid: string, updates: Partial<FormElement>) => {
+    setElements((prev) => prev.map((el) => (el.uuid === uuid ? { ...el, ...updates } : el)));
+  };
+
+  const removeElement = (uuid: string) => {
+    setElements((prev) => prev.filter((el) => el.uuid !== uuid));
+    if (selectedUuid === uuid) setSelectedUuid(null);
+  };
+
+  const moveElement = (uuid: string, direction: "up" | "down") => {
+    setElements((prev) => {
+      const current = prev.find((el) => el.uuid === uuid);
+      if (!current) return prev;
+
+      const sorted = [...prev].sort((a, b) => a.order - b.order);
+      const index = sorted.findIndex((el) => el.uuid === uuid);
+      const targetIndex = direction === "up" ? index - 1 : index + 1;
+
+      if (targetIndex < 0 || targetIndex >= sorted.length) return prev;
+
+      const other = sorted[targetIndex];
+
+      return prev.map((el) => {
+        if (el.uuid === current.uuid) return { ...el, order: other.order };
+        if (el.uuid === other.uuid) return { ...el, order: current.order };
+        return el;
+      });
+    });
+  };
+
+  return (
+    <FormContext.Provider
+      value={{
+        elements,
+        selectedUuid,
+        addElement,
+        selectElement,
+        updateElement,
+        removeElement,
+        moveElement,
+      }}
+    >
+      {children}
+    </FormContext.Provider>
+  );
+};
