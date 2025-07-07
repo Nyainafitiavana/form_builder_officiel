@@ -16,7 +16,6 @@ export default function AntdThemeProvider({ children }: { children: React.ReactN
       root.classList.remove('dark');
     }
   }, [isDark]);
-
   // 🎨 Global class for the app
   const globalThemeClass = isDark
     ? 'bg-gray-900 text-white'
