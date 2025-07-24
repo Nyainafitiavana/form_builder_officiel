@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="Clean">
-      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/page.tsx" afterDir="false" />
+    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="Corrected error server">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,18 +33,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Nyainafitiavana"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nyainafitiavana&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Nyainafitiavana/form_builder_officiel.git",
-    "accountId": "2ff1749e-c910-4fa3-a5a6-9462972beed4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nyainafitiavana/form_builder_officiel.git&quot;,
+    &quot;accountId&quot;: &quot;2ff1749e-c910-4fa3-a5a6-9462972beed4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="proportion" value="0.4912949" />
     <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
@@ -55,35 +58,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/home/fitiavana/DEV/NextJs/form-builder",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/fitiavana/.config/JetBrains/WebStorm2024.2/node/versions/20.18.0/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "/home/fitiavana/DEV/NextJs/form-builder/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/fitiavana/DEV/NextJs/form-builder&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/fitiavana/.config/JetBrains/WebStorm2024.2/node/versions/20.18.0/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/fitiavana/DEV/NextJs/form-builder/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="QodanaHighlightedReportService">
-    <option name="localRunNotPublishedPersistedInfo">
-      <LocalReportPersistedInfo>
-        <option name="path" value="/tmp/qodana_output1/qodana.sarif.json" />
-        <option name="reportGuid" value="5c806004-263e-4b95-89ef-af4a278041a5" />
-        <option name="reportName" value="form-builder/qodana/2025-07-07" />
-      </LocalReportPersistedInfo>
-    </option>
-  </component>
-  <component name="QodanaIsSelectedPersistenceService">
-    <option name="selectedOrLoading" value="true" />
-  </component>
+}</component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="/tmp/qodana_output1/qodana.sarif.json" reportGuid="5c806004-263e-4b95-89ef-af4a278041a5" reportId="form-builder/qodana/2025-07-07" />
@@ -118,7 +109,9 @@
       <option name="presentableId" value="Default" />
       <updated>1751724386210</updated>
       <workItem from="1751724389245" duration="8482000" />
-      <workItem from="1751869980855" duration="16787000" />
+      <workItem from="1751869980855" duration="17871000" />
+      <workItem from="1753328807800" duration="1581000" />
+      <workItem from="1753335211768" duration="1047000" />
     </task>
     <task id="LOCAL-00001" summary="Clean">
       <option name="closed" value="true" />
@@ -128,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751894609566</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Corrected error server">
+      <option name="closed" value="true" />
+      <created>1751894861353</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1751894861353</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean" />
+    <MESSAGE value="Corrected error server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected error server" />
   </component>
 </project>

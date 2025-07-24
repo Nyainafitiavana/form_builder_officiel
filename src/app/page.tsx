@@ -83,7 +83,7 @@ export default function FormListPage() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Mes Formulaires</h1>
         <Button type="primary" onClick={handleOpenModal}>
