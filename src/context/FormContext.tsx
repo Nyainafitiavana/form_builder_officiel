@@ -12,6 +12,7 @@ interface FormContextType {
   updateElement: (uuid: string, updates: Partial<FormElement>) => void;
   removeElement: (uuid: string) => void;
   moveElement: (uuid: string, dir: "up" | "down") => void;
+  saveToLocalStorage: () => void;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -31,21 +32,18 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
   const [elements, setElements] = useState<FormElement[]>(form.elements || []);
   const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
-  // Sync elements when form changes (e.g. on load)
+  // Sync elements when form prop changes
   useEffect(() => {
     setElements(form.elements || []);
   }, [form]);
 
-  // Auto-save elements changes to localStorage & update form in state
-  useEffect(() => {
-    // Update form object (local in this context)
-    form.elements = elements;
-
-    // Update localStorage forms list
+  // Save manually to localStorage
+  const saveToLocalStorage = () => {
+    const updatedForm: FormInterface = { ...form, elements };
     const forms: FormInterface[] = JSON.parse(localStorage.getItem("forms") || "[]");
-    const updatedForms = forms.map((f) => (f.uuid === form.uuid ? { ...form, elements } : f));
+    const updatedForms = forms.map((f) => (f.uuid === form.uuid ? updatedForm : f));
     localStorage.setItem("forms", JSON.stringify(updatedForms));
-  }, [elements, form]);
+  };
 
   const addElement = (type: FormElement["type"]) => {
     const uuid = uuidv4();
@@ -121,6 +119,7 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         updateElement,
         removeElement,
         moveElement,
+        saveToLocalStorage,
       }}
     >
       {children}

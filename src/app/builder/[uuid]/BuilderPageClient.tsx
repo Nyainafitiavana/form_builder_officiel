@@ -12,19 +12,19 @@ export default function BuilderPageClient({ uuid }: { uuid: string }) {
   const [form, setForm] = useState<FormInterface | null>(null);
   const router = useRouter();
 
+  // Load form from localStorage
   useEffect(() => {
-    if (!uuid) return;
     const forms: FormInterface[] = JSON.parse(localStorage.getItem("forms") || "[]");
-    const currentForm = forms.find((f) => f.uuid === uuid);
-    if (!currentForm) {
-      alert("Formulaire non trouvé");
+    const found = forms.find((f) => f.uuid === uuid);
+    if (!found) {
+      alert("Form not found");
       router.push("/");
-      return;
+    } else {
+      setForm(found);
     }
-    setForm(currentForm);
   }, [uuid, router]);
 
-  if (!form) return <div>Chargement...</div>;
+  if (!form) return <div>Loading...</div>;
 
   return (
     <FormProvider form={form}>

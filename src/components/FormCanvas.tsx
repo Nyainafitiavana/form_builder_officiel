@@ -3,6 +3,9 @@
 import { useFormContext } from "@/context/FormContext";
 import FormLabel from "@/components/FormLabel";
 import { ArrowUpOutlined, ArrowDownOutlined, DeleteOutlined } from "@ant-design/icons";
+import {Button, Modal} from "antd";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
 
 export default function FormCanvas() {
   const {
@@ -11,7 +14,17 @@ export default function FormCanvas() {
     selectElement,
     removeElement,
     moveElement,
+    saveToLocalStorage,
   } = useFormContext();
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const router = useRouter();
+
+  const handleSaveConfirmed = () => {
+    saveToLocalStorage(); // call of context method
+    setShowConfirmModal(false);
+    router.push("/"); // redirect to from list
+  };
 
   return (
     <div className="bg-gray-100 min-h-[400px] p-4 rounded shadow-inner">
@@ -151,6 +164,24 @@ export default function FormCanvas() {
             )}
           </div>
         ))}
+      {/* Bouton Sauvegarder */}
+      <div className="flex justify-end mt-4">
+        <Button type="primary" onClick={() => setShowConfirmModal(true)}>
+          Sauvegarder
+        </Button>
+      </div>
+
+      {/* Modal de confirmation */}
+      <Modal
+        open={showConfirmModal}
+        onCancel={() => setShowConfirmModal(false)}
+        onOk={handleSaveConfirmed}
+        okText="Oui, sauvegarder"
+        cancelText="Annuler"
+        title="Confirmation"
+      >
+        <p>Voulez-vous vraiment sauvegarder ce formulaire ?</p>
+      </Modal>
     </div>
   );
 }

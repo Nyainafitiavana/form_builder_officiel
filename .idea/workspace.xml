@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="Corrected error server">
+    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="keep changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormCanvas.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/FormContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/FormContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +112,7 @@
       <workItem from="1751724389245" duration="8482000" />
       <workItem from="1751869980855" duration="17871000" />
       <workItem from="1753328807800" duration="1581000" />
-      <workItem from="1753335211768" duration="1047000" />
+      <workItem from="1753335211768" duration="3744000" />
     </task>
     <task id="LOCAL-00001" summary="Clean">
       <option name="closed" value="true" />
@@ -129,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751894861353</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="keep changes">
+      <option name="closed" value="true" />
+      <created>1753336271436</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753336271436</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +158,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean" />
     <MESSAGE value="Corrected error server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected error server" />
+    <MESSAGE value="keep changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="keep changes" />
   </component>
 </project>
