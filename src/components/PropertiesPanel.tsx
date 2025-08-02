@@ -40,12 +40,14 @@ export default function PropertiesPanel() {
     });
   };
 
-  if (!selected) return <div className="text-gray-500">Aucun élément sélectionné</div>;
+  if (!selected) return <Card className="text-gray-500 min-h-[800px]">Aucun élément sélectionné</Card>;
 
   return (
-    <Card variant="outlined" title={<Title level={5}>Propriétés</Title>} className="space-y-2 p-4 shadow rounded">
-      <h2 className="font-bold"></h2>
-
+    <Card
+      variant="outlined"
+      title={<Title level={5}>Propriétés</Title>}
+      className="space-y-2 rounded shadow p-4 overflow-y-auto
+             min-h-[300px] md:min-h-[400px] lg:min-h-[800px] max-h-[80vh]">
       {/* If type is "sex", show read-only message */}
       {selected.type === "sex" ? (
         <div className="text-gray-500">Aucune propriété modifiable pour ce champ.</div>
@@ -53,7 +55,7 @@ export default function PropertiesPanel() {
         <div>
           {/* Label input (triggers name update) */}
           <Input
-            className="mt-2"
+            className="mt-4"
             addonBefore="Label"
             value={label}
             onChange={handleLabelChange}
@@ -61,7 +63,7 @@ export default function PropertiesPanel() {
 
           {/* Name is auto-generated from label, and read-only */}
           <Input
-            className="mt-2"
+            className="mt-4"
             addonBefore="Name"
             value={selected.name}
             disabled
@@ -71,7 +73,7 @@ export default function PropertiesPanel() {
           {selected.type === "number" && (
             <>
               <Input
-                className="mt-2"
+                className="mt-4"
                 addonBefore="Min"
                 type="number"
                 value={selected.min ?? ""}
@@ -82,7 +84,7 @@ export default function PropertiesPanel() {
                 }
               />
               <Input
-                className="mt-2"
+                className="mt-4"
                 addonBefore="Max"
                 type="number"
                 value={selected.max ?? ""}
@@ -100,7 +102,7 @@ export default function PropertiesPanel() {
       {/* Show placeholder if not checkbox or sex */}
       {selected.type !== "checkbox" && selected.type !== "sex" && (
         <Input
-          className="mt-2"
+          className="mt-4"
           addonBefore="Placeholder"
           value={selected.placeholder}
           onChange={(e) => updateElement(selected.uuid, { placeholder: e.target.value })}
@@ -109,13 +111,14 @@ export default function PropertiesPanel() {
 
       {/* Show "Requis" checkbox if not sex type */}
       {selected.type !== "sex" && (
-        <Checkbox
-          className="mt-2"
-          checked={selected.required}
-          onChange={(e) => updateElement(selected.uuid, { required: e.target.checked })}
-        >
-          Requis
-        </Checkbox>
+        <div className="mt-4">
+          <Checkbox
+            checked={selected.required}
+            onChange={(e) => updateElement(selected.uuid, { required: e.target.checked })}
+          >
+            Requis
+          </Checkbox>
+        </div>
       )}
     </Card>
   );

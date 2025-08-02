@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="integrated save method">
+    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="integrated toolbox elements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormCanvas.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toolbox.tsx" afterDir="false" />
@@ -109,7 +108,8 @@
       <workItem from="1753335211768" duration="3797000" />
       <workItem from="1753635325474" duration="2073000" />
       <workItem from="1754074251926" duration="604000" />
-      <workItem from="1754103974884" duration="2757000" />
+      <workItem from="1754103974884" duration="2864000" />
+      <workItem from="1754154255846" duration="4334000" />
     </task>
     <task id="LOCAL-00001" summary="Clean">
       <option name="closed" value="true" />
@@ -143,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753338982973</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="integrated dark mode">
+      <option name="closed" value="true" />
+      <created>1754106826815</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754106826815</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +173,8 @@
     <MESSAGE value="Corrected error server" />
     <MESSAGE value="keep changes" />
     <MESSAGE value="integrated save method" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrated save method" />
+    <MESSAGE value="integrated dark mode" />
+    <MESSAGE value="integrated toolbox elements" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated toolbox elements" />
   </component>
 </project>
