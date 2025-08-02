@@ -7,6 +7,8 @@ import { FormProvider } from "@/context/FormContext";
 import Toolbox from "@/components/Toolbox";
 import FormCanvas from "@/components/FormCanvas";
 import PropertiesPanel from "@/components/PropertiesPanel";
+import {Col, Layout, Row} from "antd";
+import {Content} from "antd/es/layout/layout";
 
 export default function BuilderPageClient({ uuid }: { uuid: string }) {
   const [form, setForm] = useState<FormInterface | null>(null);
@@ -28,11 +30,21 @@ export default function BuilderPageClient({ uuid }: { uuid: string }) {
 
   return (
     <FormProvider form={form}>
-      <div className="min-h-screen p-6 bg-gray-50 grid grid-cols-1 lg:grid-cols-5 gap-4">
-        <div className="lg:col-span-1"><Toolbox /></div>
-        <div className="lg:col-span-3"><FormCanvas /></div>
-        <div className="lg:col-span-1"><PropertiesPanel /></div>
-      </div>
+      <Layout style={{ minHeight: "100vh", padding: 24 }}>
+        <Content>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} lg={5}>
+              <Toolbox />
+            </Col>
+            <Col xs={24} lg={14}>
+              <FormCanvas />
+            </Col>
+            <Col xs={24} lg={5}>
+              <PropertiesPanel />
+            </Col>
+          </Row>
+        </Content>
+      </Layout>
     </FormProvider>
   );
 }

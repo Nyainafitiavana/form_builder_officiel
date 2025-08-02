@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="keep changes">
+    <list default="true" id="5f784c8e-5a3d-4758-a9b0-ae32c8121e0c" name="Changes" comment="integrated save method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormCanvas.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/FormContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/FormContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toolbox.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
 }</component>
   <component name="ProblemsViewState">
     <option name="proportion" value="0.4912949" />
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -76,12 +76,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="QodanaReportsService">
-    <option name="descriptions">
-      <ReportDescription localRun="true" path="/tmp/qodana_output1/qodana.sarif.json" reportGuid="5c806004-263e-4b95-89ef-af4a278041a5" reportId="form-builder/qodana/2025-07-07" />
-      <ReportDescription localRun="true" path="/tmp/qodana_output/qodana.sarif.json" reportGuid="5056f15d-575c-4484-9167-606f2df1cefa" reportId="form-builder/qodana/2025-07-07" />
-    </option>
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -112,7 +106,10 @@
       <workItem from="1751724389245" duration="8482000" />
       <workItem from="1751869980855" duration="17871000" />
       <workItem from="1753328807800" duration="1581000" />
-      <workItem from="1753335211768" duration="3744000" />
+      <workItem from="1753335211768" duration="3797000" />
+      <workItem from="1753635325474" duration="2073000" />
+      <workItem from="1754074251926" duration="604000" />
+      <workItem from="1754103974884" duration="2757000" />
     </task>
     <task id="LOCAL-00001" summary="Clean">
       <option name="closed" value="true" />
@@ -138,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753336271436</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="integrated save method">
+      <option name="closed" value="true" />
+      <created>1753338982973</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1753338982973</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +164,7 @@
     <MESSAGE value="Clean" />
     <MESSAGE value="Corrected error server" />
     <MESSAGE value="keep changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="keep changes" />
+    <MESSAGE value="integrated save method" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated save method" />
   </component>
 </project>

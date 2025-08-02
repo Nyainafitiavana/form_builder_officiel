@@ -1,8 +1,9 @@
 "use client";
 
-import { Input, Checkbox } from "antd";
+import {Input, Checkbox, Card} from "antd";
 import { useFormContext } from "@/context/FormContext";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Title from "antd/es/typography/Title";
 
 // Utility function to normalize the label into a valid name property
 function generateNameFromLabel(label: string): string {
@@ -26,7 +27,7 @@ export default function PropertiesPanel() {
     if (selected) {
       setLabel(selected.label || "");
     }
-  }, [selectedUuid]);
+  }, [selected, selectedUuid]);
 
   // Update label and generate name automatically
   const handleLabelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +43,8 @@ export default function PropertiesPanel() {
   if (!selected) return <div className="text-gray-500">Aucun élément sélectionné</div>;
 
   return (
-    <div className="space-y-2 p-4 bg-white shadow rounded">
-      <h2 className="font-bold">Propriétés</h2>
+    <Card variant="outlined" title={<Title level={5}>Propriétés</Title>} className="space-y-2 p-4 shadow rounded">
+      <h2 className="font-bold"></h2>
 
       {/* If type is "sex", show read-only message */}
       {selected.type === "sex" ? (
@@ -52,6 +53,7 @@ export default function PropertiesPanel() {
         <div>
           {/* Label input (triggers name update) */}
           <Input
+            className="mt-2"
             addonBefore="Label"
             value={label}
             onChange={handleLabelChange}
@@ -98,6 +100,7 @@ export default function PropertiesPanel() {
       {/* Show placeholder if not checkbox or sex */}
       {selected.type !== "checkbox" && selected.type !== "sex" && (
         <Input
+          className="mt-2"
           addonBefore="Placeholder"
           value={selected.placeholder}
           onChange={(e) => updateElement(selected.uuid, { placeholder: e.target.value })}
@@ -107,12 +110,13 @@ export default function PropertiesPanel() {
       {/* Show "Requis" checkbox if not sex type */}
       {selected.type !== "sex" && (
         <Checkbox
+          className="mt-2"
           checked={selected.required}
           onChange={(e) => updateElement(selected.uuid, { required: e.target.checked })}
         >
           Requis
         </Checkbox>
       )}
-    </div>
+    </Card>
   );
 }

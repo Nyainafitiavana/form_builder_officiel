@@ -3,7 +3,7 @@
 import { useFormContext } from "@/context/FormContext";
 import FormLabel from "@/components/FormLabel";
 import { ArrowUpOutlined, ArrowDownOutlined, DeleteOutlined } from "@ant-design/icons";
-import {Button, Modal} from "antd";
+import {Button, Card, Checkbox, Col, DatePicker, Form, Input, InputNumber, Modal, Radio, Row} from "antd";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 
@@ -27,161 +27,153 @@ export default function FormCanvas() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-[400px] p-4 rounded shadow-inner">
-      {[...elements]
-        .sort((a, b) => a.order - b.order)
-        .map((el, index) => (
-          <div
-            key={el.uuid}
-            onClick={() => selectElement(el.uuid)}
-            className={`relative pt-6 p-2 border mb-4 cursor-pointer rounded ${
-              selectedUuid === el.uuid ? "border-blue-500" : "border-gray-300"
-            }`}
-          >
-            {/* Boutons de contrôle (en haut à droite) */}
-            <div className="absolute top-2 right-2 flex gap-1 z-10">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  moveElement(el.uuid, "up");
-                }}
-                disabled={index === 0}
-                title="Monter"
-                className="rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed p-1"
-              >
-                <ArrowUpOutlined />
-              </button>
+    <Row className="min-h-[400px] p-4 rounded shadow-inner">
+      <Col span={24}>
+        <Row gutter={[0, 16]}>
+          {[...elements]
+            .sort((a, b) => a.order - b.order)
+            .map((el, index) => (
+              <Col span={24} key={el.uuid}>
+                <Card
+                  className={`relative cursor-pointer transition-all duration-200 ${
+                    selectedUuid === el.uuid
+                      ? "border-blue-500"
+                      : "border-gray-300"
+                  }`}
+                  onClick={() => selectElement(el.uuid)}
+                >
+                  <Row
+                    className="absolute top-2 right-2 z-10"
+                    gutter={8}
+                    onClick={(e) => e.stopPropagation()}
+                    wrap={false}
+                    justify="end"
+                  >
+                    <Col>
+                      <Button
+                        icon={<ArrowUpOutlined />}
+                        size="small"
+                        className="border-gray-300"
+                        disabled={index === 0}
+                        onClick={() => moveElement(el.uuid, "up")}
+                      />
+                    </Col>
+                    <Col>
+                      <Button
+                        icon={<ArrowDownOutlined />}
+                        size="small"
+                        className="border-gray-300"
+                        disabled={index === elements.length - 1}
+                        onClick={() => moveElement(el.uuid, "down")}
+                      />
+                    </Col>
+                    <Col>
+                      <Button
+                        icon={<DeleteOutlined />}
+                        danger
+                        size="small"
+                        onClick={() => removeElement(el.uuid)}
+                      />
+                    </Col>
+                  </Row>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  moveElement(el.uuid, "down");
-                }}
-                disabled={index === elements.length - 1}
-                title="Descendre"
-                className="rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed p-1"
-              >
-                <ArrowDownOutlined />
-              </button>
+                  {/* Champs dynamiques */}
+                  <Row>
+                    <Col span={24}>
+                      {el.type === "input" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <Input
+                            name={el.name}
+                            placeholder={el.placeholder}
+                            required={el.required}
+                            className="w-full"
+                          />
+                        </Form.Item>
+                      )}
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  removeElement(el.uuid);
-                }}
-                title="Supprimer"
-                className="rounded-full bg-red-500 hover:bg-red-600 p-1 text-white"
-              >
-                <DeleteOutlined style={{ color: "white" }} />
-              </button>
-            </div>
+                      {el.type === "textarea" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <Input.TextArea
+                            name={el.name}
+                            placeholder={el.placeholder}
+                            required={el.required}
+                            className="w-full"
+                          />
+                        </Form.Item>
+                      )}
 
-            {/* Rendu des champs */}
-            {el.type === "input" && (
-              <div>
-                <FormLabel label={el.label} required={el.required} />
-                <input
-                  className="w-full border px-2 py-1"
-                  name={el.name}
-                  placeholder={el.placeholder}
-                  required={el.required}
-                />
-              </div>
-            )}
+                      {el.type === "checkbox" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <Checkbox name={el.name} required={el.required}>
+                            {el.label}
+                          </Checkbox>
+                        </Form.Item>
+                      )}
 
-            {el.type === "textarea" && (
-              <div>
-                <FormLabel label={el.label} required={el.required} />
-                <textarea
-                  className="w-full border px-2 py-1"
-                  name={el.name}
-                  placeholder={el.placeholder}
-                  required={el.required}
-                />
-              </div>
-            )}
+                      {el.type === "sex" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <Radio.Group
+                            name={el.name}
+                            className="flex flex-col gap-1"
+                          >
+                            <Radio value="Masculin">Masculin</Radio>
+                            <Radio value="Féminin">Féminin</Radio>
+                          </Radio.Group>
+                        </Form.Item>
+                      )}
 
-            {el.type === "checkbox" && (
-              <div>
-                <FormLabel label={el.label} required={el.required} />
-                <input type="checkbox" name={el.name} required={el.required} />
-              </div>
-            )}
+                      {el.type === "date" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <DatePicker name={el.name} className="w-full" />
+                        </Form.Item>
+                      )}
 
-            {el.type === "sex" && (
-              <div className="mb-2">
-                <FormLabel label={el.label} required={el.required} />
-                <div className="space-y-1">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      name={el.name}
-                      value="Masculin"
-                      className="mr-2"
-                      required={el.required}
-                    />
-                    Masculin
-                  </label>
-                  <label className="inline-flex items-center ml-2">
-                    <input
-                      type="radio"
-                      name={el.name}
-                      value="Féminin"
-                      className="mr-2"
-                      required={el.required}
-                    />
-                    Féminin
-                  </label>
-                </div>
-              </div>
-            )}
+                      {el.type === "number" && (
+                        <Form.Item>
+                          <FormLabel label={el.label} required={el.required} />
+                          <InputNumber
+                            style={{ width: "100%" }}
+                            name={el.name}
+                            placeholder={el.placeholder}
+                            required={el.required}
+                            min={el.min}
+                            max={el.max}
+                          />
+                        </Form.Item>
+                      )}
+                    </Col>
+                  </Row>
+                </Card>
+              </Col>
+            ))}
+        </Row>
 
-            {el.type === "date" && (
-              <div>
-                <FormLabel label={el.label} required={el.required} />
-                <input
-                  type="date"
-                  name={el.name}
-                  className="w-full border px-2 py-1"
-                  required={el.required}
-                />
-              </div>
-            )}
+        {/* Bouton Sauvegarde */}
+        <Row justify="end" className="mt-4">
+          <Col>
+            <Button type="primary" onClick={() => setShowConfirmModal(true)}>
+              Sauvegarder
+            </Button>
+          </Col>
+        </Row>
 
-            {el.type === "number" && (
-              <div>
-                <FormLabel label={el.label} required={el.required} />
-                <input
-                  type="number"
-                  name={el.name}
-                  placeholder={el.placeholder}
-                  className="w-full border px-2 py-1"
-                  required={el.required}
-                  min={el.min}
-                  max={el.max}
-                />
-              </div>
-            )}
-          </div>
-        ))}
-      {/* Bouton Sauvegarder */}
-      <div className="flex justify-end mt-4">
-        <Button type="primary" onClick={() => setShowConfirmModal(true)}>
-          Sauvegarder
-        </Button>
-      </div>
-
-      {/* Modal de confirmation */}
-      <Modal
-        open={showConfirmModal}
-        onCancel={() => setShowConfirmModal(false)}
-        onOk={handleSaveConfirmed}
-        okText="Oui, sauvegarder"
-        cancelText="Annuler"
-        title="Confirmation"
-      >
-        <p>Voulez-vous vraiment sauvegarder ce formulaire ?</p>
-      </Modal>
-    </div>
+        {/* Modal de confirmation */}
+        <Modal
+          open={showConfirmModal}
+          onCancel={() => setShowConfirmModal(false)}
+          onOk={handleSaveConfirmed}
+          okText="Oui, sauvegarder"
+          cancelText="Annuler"
+          title="Confirmation"
+        >
+          <p>Voulez-vous vraiment sauvegarder ce formulaire ?</p>
+        </Modal>
+      </Col>
+    </Row>
   );
 }
