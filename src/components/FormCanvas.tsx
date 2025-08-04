@@ -3,7 +3,7 @@
 import { useFormContext } from "@/context/FormContext";
 import FormLabel from "@/components/FormLabel";
 import { ArrowUpOutlined, ArrowDownOutlined, DeleteOutlined } from "@ant-design/icons";
-import {Button, Card, Checkbox, Col, DatePicker, Form, Input, InputNumber, Modal, Radio, Row} from "antd";
+import {Button, Card, Checkbox, Col, DatePicker, Form, Input, InputNumber, Modal, Radio, Row, Select} from "antd";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 
@@ -109,21 +109,31 @@ export default function FormCanvas() {
                           {el.type === "checkbox" && (
                             <Form.Item>
                               <FormLabel label={el.label} required={el.required} />
-                              <Checkbox name={el.name} required={el.required}>
-                                {el.label}
-                              </Checkbox>
+                              <Checkbox.Group
+                                name={el.name}
+                                options={(el.options || []).map((opt) =>
+                                  typeof opt === "string" ? { label: opt, value: opt } : opt
+                                )}
+                                className={el.orientation === "horizontal" ? "flex flex-row gap-4" : "flex flex-col gap-1"}
+                              />
                             </Form.Item>
                           )}
 
-                          {el.type === "sex" && (
+                          {el.type === "radio" && (
                             <Form.Item>
                               <FormLabel label={el.label} required={el.required} />
-                              <Radio.Group
-                                name={el.name}
-                                className="flex flex-col gap-1"
-                              >
-                                <Radio value="Masculin">Masculin</Radio>
-                                <Radio value="Féminin">Féminin</Radio>
+                              <Radio.Group name={el.name}>
+                                <div className={el.orientation === "horizontal" ? "flex flex-row gap-4" : "flex flex-col gap-1"}>
+                                  {(el.options || []).map((opt) => {
+                                    const value = typeof opt === "string" ? opt : opt.value;
+                                    const label = typeof opt === "string" ? opt : opt.label;
+                                    return (
+                                      <Radio key={value} value={value}>
+                                        {label}
+                                      </Radio>
+                                    );
+                                  })}
+                                </div>
                               </Radio.Group>
                             </Form.Item>
                           )}
@@ -145,6 +155,22 @@ export default function FormCanvas() {
                                 required={el.required}
                                 min={el.min}
                                 max={el.max}
+                              />
+                            </Form.Item>
+                          )}
+
+                          {el.type === "select" && (
+                            <Form.Item>
+                              <FormLabel label={el.label} required={el.required} />
+                              <Select
+                                showSearch
+                                mode={el.multiple ? "multiple" : undefined}
+                                className="w-full"
+                                placeholder={el.placeholder || ""}
+                                options={(el.options || []).map((opt) => ({
+                                  label: opt,
+                                  value: opt,
+                                }))}
                               />
                             </Form.Item>
                           )}

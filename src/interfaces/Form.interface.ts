@@ -12,7 +12,14 @@ export interface FormCardProps {
   onDelete: (uuid: string) => void;
 }
 
-export type FormElementType = 'input' | 'textarea' | 'checkbox' | 'radio' | 'sex' | "date" | "number";
+export type FormElementType =
+  | 'input'
+  | 'textarea'
+  | 'checkbox'
+  | 'radio'
+  | "date"
+  | "select"
+  | "number";
 
 export interface FormElement {
   uuid: string;
@@ -21,7 +28,9 @@ export interface FormElement {
   label: string;
   placeholder?: string;
   required?: boolean;
-  options?: string[];
+  multiple?: boolean;
+  options?: { label: string; value: string }[];
+  orientation?: "vertical" | "horizontal",
   order: number;
   min?: number;
   max?: number;

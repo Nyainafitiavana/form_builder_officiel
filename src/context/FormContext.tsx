@@ -51,9 +51,7 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
 
     let newElement: FormElement;
 
-    if (type === "sex") {
-      newElement = { uuid, type: "sex", label: "Sexe", name: "sexe", required: true, order: nextOrder };
-    } else if (type === "date") {
+    if (type === "date") {
       newElement = { uuid, type: "date", label: "Date", name: "", required: false, order: nextOrder };
     } else if (type === "number") {
       newElement = {
@@ -66,6 +64,40 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         order: nextOrder,
         min: undefined,
         max: undefined,
+      };
+    } else if (type === "select") {
+      newElement = {
+        uuid,
+        type: "select",
+        label: "Sélection",
+        name: "selection",
+        placeholder: `Veuillez selectionnez une ${type}`,
+        required: false,
+        multiple: false,
+        options: [{ label: "Option 1", value: "option_1" }],//Default
+        order: nextOrder,
+      };
+    } else if (type === "checkbox") {
+      newElement = {
+        uuid,
+        type: "checkbox",
+        label: "Checkbox Group",
+        name: "checkbox_group",
+        required: false,
+        options: [{ label: "Option 1", value: "option_1" }],//Default
+        orientation: "vertical",
+        order: nextOrder,
+      };
+    } else if (type === "radio") {
+      newElement = {
+        uuid,
+        type: "radio",
+        label: "Radio Group",
+        name: "radio_group",
+        required: false,
+        options: [{ label: "Option 1", value: "option_1" }],//Default
+        orientation: "vertical",
+        order: nextOrder,
       };
     } else {
       newElement = { uuid, type, label: `New ${type}`, name: "", required: false, order: nextOrder };

@@ -2,7 +2,14 @@
 import {Card} from "antd";
 import { useFormContext } from "@/context/FormContext";
 import Title from "antd/es/typography/Title";
-import {CalendarOutlined, CheckSquareOutlined, EditOutlined, ManOutlined, NumberOutlined, PlusOutlined} from "@ant-design/icons";
+import {
+  AppstoreOutlined,
+  CalendarOutlined, CheckCircleOutlined,
+  CheckSquareOutlined,
+  EditOutlined,
+  NumberOutlined,
+  PlusOutlined
+} from "@ant-design/icons";
 
 export default function Toolbox() {
   const { addElement } = useFormContext();
@@ -28,8 +35,13 @@ export default function Toolbox() {
         <ToolboxCard icon={NumberOutlined} label="Number" onClick={() => addElement("number")} />
         <ToolboxCard icon={EditOutlined} label="Textarea" onClick={() => addElement("textarea")} />
         <ToolboxCard icon={CheckSquareOutlined} label="Checkbox" onClick={() => addElement("checkbox")} />
-        <ToolboxCard icon={ManOutlined} label="Sexe" onClick={() => addElement("sex")} />
+        <ToolboxCard icon={CheckCircleOutlined} label="Radio" onClick={() => addElement("radio")} />
         <ToolboxCard icon={CalendarOutlined} label="Date" onClick={() => addElement("date")} />
+        <ToolboxCard
+          icon={AppstoreOutlined}
+          label="Select"
+          onClick={() => addElement("select")}
+        />
       </div>
 
     </Card>
