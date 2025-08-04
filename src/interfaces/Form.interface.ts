@@ -19,6 +19,8 @@ export type FormElementType =
   | 'radio'
   | "date"
   | "select"
+  | "time"
+  | "phone"
   | "number";
 
 export interface FormElement {

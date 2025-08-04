@@ -5,9 +5,9 @@ import Title from "antd/es/typography/Title";
 import {
   AppstoreOutlined,
   CalendarOutlined, CheckCircleOutlined,
-  CheckSquareOutlined,
+  CheckSquareOutlined, ClockCircleOutlined,
   EditOutlined,
-  NumberOutlined,
+  NumberOutlined, PhoneOutlined,
   PlusOutlined
 } from "@ant-design/icons";
 
@@ -34,9 +34,11 @@ export default function Toolbox() {
         <ToolboxCard icon={PlusOutlined} label="Input" onClick={() => addElement("input")} />
         <ToolboxCard icon={NumberOutlined} label="Number" onClick={() => addElement("number")} />
         <ToolboxCard icon={EditOutlined} label="Textarea" onClick={() => addElement("textarea")} />
-        <ToolboxCard icon={CheckSquareOutlined} label="Checkbox" onClick={() => addElement("checkbox")} />
-        <ToolboxCard icon={CheckCircleOutlined} label="Radio" onClick={() => addElement("radio")} />
+        <ToolboxCard icon={CheckSquareOutlined} label="Choix multiples" onClick={() => addElement("checkbox")} />
+        <ToolboxCard icon={CheckCircleOutlined} label="Choix unique" onClick={() => addElement("radio")} />
         <ToolboxCard icon={CalendarOutlined} label="Date" onClick={() => addElement("date")} />
+        <ToolboxCard icon={ClockCircleOutlined} label="Heure" onClick={() => addElement("time")} />
+        <ToolboxCard icon={PhoneOutlined} label="Téléphone" onClick={() => addElement("phone")} />
         <ToolboxCard
           icon={AppstoreOutlined}
           label="Select"

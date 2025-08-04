@@ -95,8 +95,31 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         label: "Radio Group",
         name: "radio_group",
         required: false,
-        options: [{ label: "Option 1", value: "option_1" }],//Default
+        options: [
+          { label: "Option 1", value: "option_1" },
+          { label: "Option 2", value: "option_2" }
+        ],
         orientation: "vertical",
+        order: nextOrder,
+      };
+    } else if (type === "time") {
+      newElement = {
+        uuid,
+        type: "time",
+        label: "Heure",
+        name: "heure",
+        required: false,
+        order: nextOrder,
+      };
+    } else if (type === "phone") {
+      newElement = {
+        uuid,
+        type: "phone",
+        label: "Téléphone",
+        name: "telephone",
+        placeholder: "Ex: +261...",
+        required: false,
+        max: 10,
         order: nextOrder,
       };
     } else {

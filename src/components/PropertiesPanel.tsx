@@ -93,7 +93,59 @@ export default function PropertiesPanel() {
           </>
         )}
 
-        {["select", "checkbox", "radio"].includes(selected.type) && (
+        {selected.type === "phone" && (
+          <>
+            <Input
+              className="mt-4"
+              min={10}
+              addonBefore="Longeur"
+              type="number"
+              value={selected.max ?? ""}
+              onChange={(e) =>
+                updateElement(selected.uuid, {
+                  max: e.target.value ? parseFloat(e.target.value) : undefined,
+                })
+              }
+            />
+          </>
+        )}
+
+        {selected.type === "radio" && (
+          <div className="mt-4">
+            <label className="block font-medium mb-1">Options</label>
+            <div className="space-y-2">
+              {(selected.options || []).map((opt: any, index: number) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <Input
+                    addonBefore="Label"
+                    value={opt.label}
+                    onChange={(e) => handleOptionChange(index, "label", e.target.value)}
+                  />
+                  <Input
+                    addonBefore="Value"
+                    value={opt.value}
+                    onChange={(e) => handleOptionChange(index, "value", e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="mt-4">
+              <h3 className="font-semibold">Orientation </h3>
+              <Switch
+                checked={selected.orientation !== "horizontal"}
+                onChange={(checked) =>
+                  updateElement(selected.uuid, {
+                    orientation: checked ? "vertical" : "horizontal",
+                  })
+                }
+                checkedChildren="Vertical"
+                unCheckedChildren="Horizontal"
+              />
+            </div>
+          </div>
+        )}
+
+        {["select", "checkbox"].includes(selected.type) && (
           <div className="mt-4">
             <label className="block font-medium mb-1">Options</label>
             <div className="space-y-2">
@@ -181,7 +233,6 @@ export default function PropertiesPanel() {
             }
           />
         )}
-
 
         <div className="mt-4">
           <Checkbox
