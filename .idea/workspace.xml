@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated new element">
+    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated time element">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormCanvas.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toolbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/FormContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/FormContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" afterDir="false" />
     </list>
@@ -20,29 +22,46 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Nyainafitiavana"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Nyainafitiavana/form_builder_officiel.git",
+    "accountId": "2ff1749e-c910-4fa3-a5a6-9462972beed4"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="30pNtfAziFty319PoCJXQZeXMkk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/fitiavana/.nvm/versions/node/v22.17.0/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "/home/fitiavana/DEV/NextJs/form-builder/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/fitiavana/.nvm/versions/node/v22.17.0/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/fitiavana/DEV/NextJs/form-builder/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Builder" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -58,8 +77,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754320777360</updated>
-      <workItem from="1754320781904" duration="3519000" />
+      <workItem from="1754320781904" duration="4022000" />
+      <workItem from="1754373180323" duration="11409000" />
     </task>
+    <task id="LOCAL-00001" summary="integrated time element">
+      <option name="closed" value="true" />
+      <created>1754325272176</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754325272176</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -67,6 +96,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="integrated new element" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrated new element" />
+    <MESSAGE value="integrated time element" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated time element" />
   </component>
 </project>

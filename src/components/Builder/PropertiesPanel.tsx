@@ -1,4 +1,4 @@
-import {Input, Checkbox, Card, Button, Switch} from "antd";
+import {Input, Checkbox, Card, Button, Switch, Select} from "antd";
 import {useFormContext} from "@/context/FormContext";
 import React, {useEffect, useState} from "react";
 import Title from "antd/es/typography/Title";
@@ -63,8 +63,44 @@ export default function PropertiesPanel() {
       className="space-y-2 rounded shadow p-4 overflow-y-auto min-h-[300px] md:min-h-[400px] lg:min-h-[800px] max-h-[80vh]"
     >
       <div>
-        <Input className="mt-4" addonBefore="Label" value={label} onChange={handleLabelChange}/>
-        <Input className="mt-4" addonBefore="Name" value={selected.name} disabled/>
+        {selected.type !== "head" && selected.type !== "divider" && (
+          <>
+            <Input className="mt-4" addonBefore="Label" value={label} onChange={handleLabelChange}/>
+            <Input className="mt-4" addonBefore="Name" value={selected.name} disabled/>
+          </>
+        )}
+
+        {selected.type === "head" && (
+          <div className="mt-4 space-y-4">
+            <div>
+              <label className="block font-medium mb-1">Titre</label>
+              <Input
+                value={selected.title}
+                onChange={(e) => updateElement(selected.uuid, {title: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block font-medium mb-1">Description</label>
+              <Input
+                value={selected.description}
+                onChange={(e) => updateElement(selected.uuid, {description: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block font-medium mb-1">Alignement</label>
+              <Select
+                value={selected.align}
+                onChange={(value) => updateElement(selected.uuid, {align: value})}
+                options={[
+                  {label: "Gauche", value: "left"},
+                  {label: "Centré", value: "center"},
+                  {label: "Droite", value: "right"},
+                ]}
+                style={{width: "100%"}}
+              />
+            </div>
+          </div>
+        )}
 
         {selected.type === "number" && (
           <>
@@ -221,31 +257,39 @@ export default function PropertiesPanel() {
           </div>
         )}
 
-        {selected.type !== "checkbox" && selected.type !== "radio" && (
-          <Input
-            className="mt-4"
-            addonBefore="Placeholder"
-            value={selected.placeholder}
-            onChange={(e) =>
-              updateElement(selected.uuid, {
-                placeholder: e.target.value,
-              })
-            }
-          />
+        {
+          selected.type !== "checkbox" &&
+          selected.type !== "radio" &&
+          selected.type !== "head" &&
+          selected.type !== "divider" &&
+          selected.type !== "file" &&
+          selected.type !== "image" &&
+          (
+            <Input
+              className="mt-4"
+              addonBefore="Placeholder"
+              value={selected.placeholder}
+              onChange={(e) =>
+                updateElement(selected.uuid, {
+                  placeholder: e.target.value,
+                })
+              }
+            />
+          )}
+        {selected.type !== "head" && selected.type !== "divider" && (
+          <div className="mt-4">
+            <Checkbox
+              checked={selected.required}
+              onChange={(e) =>
+                updateElement(selected.uuid, {
+                  required: e.target.checked,
+                })
+              }
+            >
+              Requis
+            </Checkbox>
+          </div>
         )}
-
-        <div className="mt-4">
-          <Checkbox
-            checked={selected.required}
-            onChange={(e) =>
-              updateElement(selected.uuid, {
-                required: e.target.checked,
-              })
-            }
-          >
-            Requis
-          </Checkbox>
-        </div>
       </div>
     </Card>
   );

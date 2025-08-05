@@ -2,13 +2,13 @@
 
 import {useFormContext} from "@/context/FormContext";
 import FormLabel from "@/components/FormLabel";
-import {ArrowUpOutlined, ArrowDownOutlined, DeleteOutlined} from "@ant-design/icons";
+import {ArrowUpOutlined, ArrowDownOutlined, DeleteOutlined, InboxOutlined, PlusOutlined} from "@ant-design/icons";
 import {
   Button,
   Card,
   Checkbox,
   Col,
-  DatePicker,
+  DatePicker, Divider,
   Form,
   Input,
   InputNumber,
@@ -16,14 +16,19 @@ import {
   Radio,
   Row,
   Select,
-  TimePicker
+  TimePicker, Upload, UploadFile, Image, UploadProps
 } from "antd";
 import {useRouter} from "next/navigation";
-import {useState} from "react";
+import React, {useState} from "react";
+import Dragger from "antd/es/upload/Dragger";
+import Title from "antd/es/typography/Title";
+
+type GetBase64Fn = (file: File) => Promise<string>;
 
 export default function FormCanvas() {
   const {
     elements,
+    form,
     selectedUuid,
     selectElement,
     removeElement,
@@ -33,6 +38,9 @@ export default function FormCanvas() {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const router = useRouter();
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const handleSaveConfirmed = () => {
     saveToLocalStorage(); // call of context method
@@ -40,9 +48,39 @@ export default function FormCanvas() {
     router.push("/"); // redirect to from list
   };
 
+  const getBase64: GetBase64Fn = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+
+  const handlePreview = async (file: UploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj as File);
+    }
+    setPreviewImage(file.url || (file.preview as string));
+    setPreviewOpen(true);
+  };
+
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
+  const uploadButton = (
+    <button style={{ border: 0, background: 'none' }} type="button">
+      <PlusOutlined />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </button>
+  );
+
+
   return (
     <Card className="rounded p-4 overflow-y-auto
-             min-h-[300px] md:min-h-[400px] lg:min-h-[800px] max-h-[80vh]">
+             min-h-[300px] md:min-h-[400px] lg:min-h-[800px] max-h-[80vh]"
+          title={<Title level={5}>{form.name}</Title>}
+    >
       <Row>
         <Col span={24}>
           <Row gutter={[0, 16]}>
@@ -96,6 +134,17 @@ export default function FormCanvas() {
                     {/* Champs dynamiques */}
                     <Row>
                       <Col span={24}>
+                        {el.type === "divider" && <Divider />}
+
+                        {el.type === "head" && (
+                          <div
+                            className={`w-full my-4 text-${el.align}`}
+                          >
+                            <h2 className="text-2xl font-bold">{el.title}</h2>
+                            <p className="text-gray-600">{el.description}</p>
+                          </div>
+                        )}
+
                         {el.type === "input" && (
                           <Form.Item>
                             <FormLabel label={el.label} required={el.required}/>
@@ -120,10 +169,23 @@ export default function FormCanvas() {
                           </Form.Item>
                         )}
 
+                        {el.type === "email" && (
+                          <Form.Item>
+                            <FormLabel label={el.label} required={el.required}/>
+                            <Input
+                              name={el.name}
+                              placeholder={el.placeholder}
+                              required={el.required}
+                              className="w-full"
+                            />
+                          </Form.Item>
+                        )}
+
                         {el.type === "checkbox" && (
                           <Form.Item>
                             <FormLabel label={el.label} required={el.required}/>
                             <Checkbox.Group
+                              key={el.uuid}
                               name={el.name}
                               options={(el.options || []).map((opt) =>
                                 typeof opt === "string" ? {label: opt, value: opt} : opt
@@ -201,6 +263,51 @@ export default function FormCanvas() {
                           <Form.Item>
                             <FormLabel label={el.label} required={el.required}/>
                             <Input showCount maxLength={el.max} placeholder={el.placeholder || ''}/>
+                          </Form.Item>
+                        )}
+
+                        {el.type === "file" && (
+                          <Form.Item>
+                            <FormLabel label={el.label} required={el.required} />
+                            <Dragger
+                              name={el.name}
+                              multiple
+                              beforeUpload={() => false}
+                              listType="text"
+                            >
+                              <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                              </p>
+                              <p className="ant-upload-text">Cliquez ou glissez un fichier ici</p>
+                              <p className="ant-upload-hint">
+                                Vous pouvez sélectionner plusieurs fichiers. Les données sensibles sont interdites.
+                              </p>
+                            </Dragger>
+                          </Form.Item>
+                        )}
+
+                        {el.type === "image" && (
+                          <Form.Item>
+                            <FormLabel label={el.label} required={el.required} />
+                            <Upload
+                              listType="picture-circle"
+                              fileList={fileList}
+                              onPreview={handlePreview}
+                              onChange={handleChange}
+                              beforeUpload={() => false} // avoid automatic upload
+                            >
+                              {fileList.length >= 8 ? null : uploadButton}
+                            </Upload>
+                            <Image
+                              alt="image-empty"
+                              wrapperStyle={{ display: 'none' }} // skip the automatic preview
+                              preview={{
+                                visible: previewOpen,
+                                onVisibleChange: (visible) => setPreviewOpen(visible),
+                                afterOpenChange: (visible) => !visible && setPreviewImage(''),
+                              }}
+                              src={previewImage}
+                            />
                           </Form.Item>
                         )}
 

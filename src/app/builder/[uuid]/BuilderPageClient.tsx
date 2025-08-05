@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FormInterface } from "@/interfaces/Form.interface";
 import { FormProvider } from "@/context/FormContext";
-import Toolbox from "@/components/Toolbox";
-import FormCanvas from "@/components/FormCanvas";
-import PropertiesPanel from "@/components/PropertiesPanel";
+import Toolbox from "@/components/Builder/Toolbox";
+import FormCanvas from "@/components/Builder/FormCanvas";
+import PropertiesPanel from "@/components/Builder/PropertiesPanel";
 import {Col, Layout, Row} from "antd";
 import {Content} from "antd/es/layout/layout";
 

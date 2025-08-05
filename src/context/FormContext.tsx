@@ -6,6 +6,7 @@ import { FormInterface, FormElement } from "@/interfaces/Form.interface";
 
 interface FormContextType {
   elements: FormElement[];
+  form: FormInterface
   selectedUuid: string | null;
   addElement: (type: FormElement["type"]) => void;
   selectElement: (uuid: string) => void;
@@ -53,6 +54,16 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
 
     if (type === "date") {
       newElement = { uuid, type: "date", label: "Date", name: "", required: false, order: nextOrder };
+    } else if (type === "email") {
+      newElement = {
+        uuid,
+        type: "email",
+        label: "Email",
+        name: "email",
+        placeholder: "exemple@domaine.com",
+        required: false,
+        order: nextOrder
+      };
     } else if (type === "number") {
       newElement = {
         uuid,
@@ -122,6 +133,41 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         max: 10,
         order: nextOrder,
       };
+    } else if (type === "head") {
+      newElement = {
+        uuid,
+        type: "head",
+        title: "Titre",
+        description: "Sous titre",
+        align: "left",
+        label: '',
+        order: nextOrder,
+      };
+    } else if (type === "divider") {
+      newElement = {
+        uuid,
+        type: "divider",
+        label: "",
+        order: nextOrder,
+      };
+    } else if (type === "file") {
+      newElement = {
+        uuid,
+        type: "file",
+        label: "Fichier",
+        name: "fichier",
+        required: false,
+        order: nextOrder,
+      };
+    } else if (type === "image") {
+      newElement = {
+        uuid,
+        type: "image",
+        label: "Image",
+        name: "image",
+        required: false,
+        order: nextOrder,
+      };
     } else {
       newElement = { uuid, type, label: `New ${type}`, name: "", required: false, order: nextOrder };
     }
@@ -168,6 +214,7 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
     <FormContext.Provider
       value={{
         elements,
+        form,
         selectedUuid,
         addElement,
         selectElement,

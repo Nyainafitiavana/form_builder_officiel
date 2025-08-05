@@ -13,6 +13,8 @@ export interface FormCardProps {
 }
 
 export type FormElementType =
+  | 'head'
+  | 'divider'
   | 'input'
   | 'textarea'
   | 'checkbox'
@@ -21,10 +23,16 @@ export type FormElementType =
   | "select"
   | "time"
   | "phone"
+  | "file"
+  | "image"
+  | "email"
   | "number";
 
 export interface FormElement {
   uuid: string;
+  title?: string;
+  description?: string;
+  align?: "left" | "center" | "right";
   type: FormElementType;
   name?: string;
   label: string;
