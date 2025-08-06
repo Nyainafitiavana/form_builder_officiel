@@ -76,6 +76,15 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         min: undefined,
         max: undefined,
       };
+    } else if (type === "fieldset") {
+      newElement = {
+        uuid,
+        type: "fieldset",
+        label: "Groupe de champs",
+        name: "groupe_de_champs",
+        order: nextOrder,
+        children: [],
+      };
     } else if (type === "select") {
       newElement = {
         uuid,

@@ -311,6 +311,29 @@ export default function FormCanvas() {
                           </Form.Item>
                         )}
 
+                        {el.type === 'fieldset' && (
+                          <Card title={el.label} style={{ marginBottom: '1rem' }}>
+                            {el.children?.map((child, index) => (
+                              <Form.Item key={child.uuid}>
+                                <FormLabel label={child.label} required={child.required} />
+                                {child.type === "input" && (
+                                  <Input placeholder={child.placeholder || ""} />
+                                )}
+                                {child.type === "date" && (
+                                  <DatePicker className="w-full" placeholder={child.placeholder || ""} />
+                                )}
+                                {child.type === "number" && (
+                                  <InputNumber
+                                    style={{width: '50%'}}
+                                    placeholder={child.placeholder || ""}
+                                    min={child.min} max={child.max} />
+                                )}
+                              </Form.Item>
+                            ))}
+                          </Card>
+                        )}
+
+
                       </Col>
                     </Row>
                   </Card>

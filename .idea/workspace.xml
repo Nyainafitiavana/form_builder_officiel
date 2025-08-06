@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated time element">
+    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated upload element">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/FormContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/FormContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" afterDir="false" />
     </list>
@@ -22,18 +20,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Nyainafitiavana"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nyainafitiavana&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Nyainafitiavana/form_builder_officiel.git",
-    "accountId": "2ff1749e-c910-4fa3-a5a6-9462972beed4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Nyainafitiavana/form_builder_officiel.git&quot;,
+    &quot;accountId&quot;: &quot;2ff1749e-c910-4fa3-a5a6-9462972beed4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -78,7 +76,9 @@
       <option name="presentableId" value="Default" />
       <updated>1754320777360</updated>
       <workItem from="1754320781904" duration="4022000" />
-      <workItem from="1754373180323" duration="11409000" />
+      <workItem from="1754373180323" duration="11597000" />
+      <workItem from="1754416385775" duration="2010000" />
+      <workItem from="1754496182429" duration="5349000" />
     </task>
     <task id="LOCAL-00001" summary="integrated time element">
       <option name="closed" value="true" />
@@ -88,15 +88,35 @@
       <option name="project" value="LOCAL" />
       <updated>1754325272176</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="integrated upload element">
+      <option name="closed" value="true" />
+      <created>1754392854686</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754392854687</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="integrated new element" />
     <MESSAGE value="integrated time element" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrated time element" />
+    <MESSAGE value="integrated upload element" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated upload element" />
   </component>
 </project>

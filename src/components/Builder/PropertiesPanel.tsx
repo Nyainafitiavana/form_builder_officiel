@@ -1,8 +1,9 @@
-import {Input, Checkbox, Card, Button, Switch, Select} from "antd";
+import {Input, Checkbox, Card, Button, Switch, Select, InputNumber} from "antd";
 import {useFormContext} from "@/context/FormContext";
 import React, {useEffect, useState} from "react";
 import Title from "antd/es/typography/Title";
 import {DeleteOutlined} from "@ant-design/icons";
+import {FormElement, FormElementType} from "@/interfaces/Form.interface";
 
 function generateNameFromLabel(label: string): string {
   return label
@@ -53,6 +54,115 @@ export default function PropertiesPanel() {
     const updated = [...(selected?.options || [])].filter((_, i) => i !== index);
     updateElement(selected!.uuid, {options: updated});
   };
+
+  //Met à jour le label d’un champ enfant dans le fieldset
+  function updateChildLabel(index: number, newLabel: string) {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      label: newLabel,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+  //Met à jour le label d’un champ enfant dans le fieldset
+  function updateChildPlaceholder(index: number, newPlaceholder: string) {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      placeholder: newPlaceholder,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+  //Met à jour le type (input, date, etc.) d’un champ enfant
+  function updateChildType(index: number, newType: FormElementType) {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      type: newType,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+
+  //Met à jour si un champ est requis ou non
+  function updateChildRequired(index: number, required: boolean) {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      required: required,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+
+  //Ajoute un champ enfant dans le fieldset
+  function addChild() {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const newChild: FormElement = {
+      uuid: crypto.randomUUID(),
+      type: "input",
+      label: "Nouveau champ",
+      required: false,
+      placeholder: "",
+      order: (selected.children?.length || 0),
+    };
+
+    const updatedChildren = [...(selected.children || []), newChild];
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+
+  //Supprime un champ enfant
+  function removeChild(index: number) {
+    if (!selected || selected.type !== "fieldset") return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren.splice(index, 1);
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+  function updateChildMin(index: number, min: number) {
+    if (!selected || selected.type !== 'fieldset') return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      min,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+  function updateChildMax(index: number, max: number) {
+    if (!selected || selected.type !== 'fieldset') return;
+
+    const updatedChildren = [...(selected.children || [])];
+    updatedChildren[index] = {
+      ...updatedChildren[index],
+      max,
+    };
+
+    updateElement(selected.uuid, { children: updatedChildren });
+  }
+
+
+
 
   if (!selected) return <Card className="text-gray-500 min-h-[800px]">Aucun élément sélectionné</Card>;
 
@@ -181,6 +291,68 @@ export default function PropertiesPanel() {
           </div>
         )}
 
+        {selected?.type === 'fieldset' && (
+          <div className="mt-4">
+            <Title level={5}>Champs du groupe</Title>
+            {selected.children?.map((child, index) => (
+              <Card key={child.uuid} size="small" style={{marginBottom: '0.5rem'}}>
+                <div className="mt-4">
+                  <Input
+                    value={child.label}
+                    placeholder="Label"
+                    onChange={(e) => updateChildLabel(index, e.target.value)}
+                  />
+                </div>
+                <div className="mt-4">
+                  <Input
+                    value={child.placeholder}
+                    placeholder="Placeholder"
+                    onChange={(e) => updateChildPlaceholder(index, e.target.value)}
+                  />
+                </div>
+                <div className="mt-4">
+                  <Select
+                    style={{width : '50%'}}
+                    value={child.type}
+                    onChange={(value) => updateChildType(index, value)}
+                    options={[
+                      {label: 'Texte', value: 'input'},
+                      {label: 'Date', value: 'date'},
+                      {label: 'Nombre', value: 'number'},
+                    ]}
+                  />
+                </div>
+                {child.type === 'number' && (
+                  <div className="mt-4" style={{ display: 'flex', gap: '1rem' }}>
+                    <InputNumber
+                      placeholder="Min"
+                      value={child.min}
+                      onChange={(value) => updateChildMin(index, value as number)}
+                    />
+                    <InputNumber
+                      placeholder="Max"
+                      value={child.max}
+                      onChange={(value) => updateChildMax(index, value as number)}
+                    />
+                  </div>
+                )}
+
+                <div className="mt-4 mb-4">
+                  <Checkbox
+                    checked={child.required}
+                    onChange={(e) => updateChildRequired(index, e.target.checked)}
+                  >
+                    Requis
+                  </Checkbox>
+                  <Button danger icon={<DeleteOutlined/>} onClick={() => removeChild(index)}></Button>
+                </div>
+              </Card>
+            ))}
+            <Button type="dashed" onClick={addChild}>+ Ajouter un champ</Button>
+          </div>
+        )}
+
+
         {["select", "checkbox"].includes(selected.type) && (
           <div className="mt-4">
             <label className="block font-medium mb-1">Options</label>
@@ -264,6 +436,7 @@ export default function PropertiesPanel() {
           selected.type !== "divider" &&
           selected.type !== "file" &&
           selected.type !== "image" &&
+          selected.type !== "fieldset" &&
           (
             <Input
               className="mt-4"
@@ -276,7 +449,12 @@ export default function PropertiesPanel() {
               }
             />
           )}
-        {selected.type !== "head" && selected.type !== "divider" && (
+
+        {
+          selected.type !== "head" &&
+          selected.type !== "divider" &&
+          selected.type !== "fieldset" &&
+          (
           <div className="mt-4">
             <Checkbox
               checked={selected.required}

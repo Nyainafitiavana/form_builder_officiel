@@ -3,12 +3,13 @@ import {Card} from "antd";
 import { useFormContext } from "@/context/FormContext";
 import Title from "antd/es/typography/Title";
 import {
+  AppstoreAddOutlined,
   AppstoreOutlined,
   CalendarOutlined, CheckCircleOutlined,
   CheckSquareOutlined, ClockCircleOutlined,
   FileImageOutlined, FontSizeOutlined, LineHeightOutlined, MailOutlined, MinusOutlined,
   NumberOutlined, PhoneOutlined, PicCenterOutlined,
-  UploadOutlined
+  UploadOutlined,
 } from "@ant-design/icons";
 
 export default function Toolbox() {
@@ -37,6 +38,7 @@ export default function Toolbox() {
         <ToolboxCard icon={LineHeightOutlined} label="Texte long" onClick={() => addElement("textarea")} />
         <ToolboxCard icon={MailOutlined} label="Email" onClick={() => addElement("email")} />
         <ToolboxCard icon={PhoneOutlined} label="Téléphone" onClick={() => addElement("phone")} />
+        <ToolboxCard icon={AppstoreAddOutlined} label="Groupe de champs" onClick={() => addElement("fieldset")} />
         <ToolboxCard icon={NumberOutlined} label="Chiffre" onClick={() => addElement("number")} />
         <ToolboxCard icon={CheckSquareOutlined} label="Choix multiples" onClick={() => addElement("checkbox")} />
         <ToolboxCard icon={CheckCircleOutlined} label="Choix unique" onClick={() => addElement("radio")} />

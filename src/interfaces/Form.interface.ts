@@ -16,6 +16,7 @@ export type FormElementType =
   | 'head'
   | 'divider'
   | 'input'
+  | 'groupedName'
   | 'textarea'
   | 'checkbox'
   | 'radio'
@@ -26,6 +27,7 @@ export type FormElementType =
   | "file"
   | "image"
   | "email"
+  | "fieldset"
   | "number";
 
 export interface FormElement {
@@ -39,6 +41,7 @@ export interface FormElement {
   placeholder?: string;
   required?: boolean;
   multiple?: boolean;
+  children?: FormElement[];
   options?: { label: string; value: string }[];
   orientation?: "vertical" | "horizontal",
   order: number;
