@@ -1,3 +1,5 @@
+import SignatureCanvas from "react-signature-canvas";
+
 export interface FormInterface {
   uuid: string;
   name: string;
@@ -28,7 +30,10 @@ export type FormElementType =
   | "image"
   | "email"
   | "fieldset"
-  | "number";
+  | "switch"
+  | "number"
+  | "signature"
+  | "submit";
 
 export interface FormElement {
   uuid: string;
@@ -40,11 +45,16 @@ export interface FormElement {
   label: string;
   placeholder?: string;
   required?: boolean;
-  multiple?: boolean;
+  multiple?: boolean; // pour les selects
   children?: FormElement[];
-  options?: { label: string; value: string }[];
-  orientation?: "vertical" | "horizontal",
+  checkedChildren?: string;// pour les switchs
+  unCheckedChildren?: string;// pour les switchs
+  options?: { label: string; value: string }[]; // pour les selects et check box
+  orientation?: "vertical" | "horizontal";
   order: number;
-  min?: number;
-  max?: number;
+  min?: number;// pour les champs number
+  max?: number;// pour les champs number
+  buttonText?: string;
+  // seulement pour les signatures
+  ref?: SignatureCanvas | null;
 }

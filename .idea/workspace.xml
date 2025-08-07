@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated upload element">
+    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated fieldset">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" afterDir="false" />
@@ -78,7 +80,8 @@
       <workItem from="1754320781904" duration="4022000" />
       <workItem from="1754373180323" duration="11597000" />
       <workItem from="1754416385775" duration="2010000" />
-      <workItem from="1754496182429" duration="5349000" />
+      <workItem from="1754496182429" duration="5569000" />
+      <workItem from="1754538091511" duration="3551000" />
     </task>
     <task id="LOCAL-00001" summary="integrated time element">
       <option name="closed" value="true" />
@@ -96,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754392854687</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="integrated fieldset">
+      <option name="closed" value="true" />
+      <created>1754501733689</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754501733689</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +128,7 @@
     <MESSAGE value="integrated new element" />
     <MESSAGE value="integrated time element" />
     <MESSAGE value="integrated upload element" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrated upload element" />
+    <MESSAGE value="integrated fieldset" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated fieldset" />
   </component>
 </project>

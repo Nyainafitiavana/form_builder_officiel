@@ -8,7 +8,7 @@ import {
   CalendarOutlined, CheckCircleOutlined,
   CheckSquareOutlined, ClockCircleOutlined,
   FileImageOutlined, FontSizeOutlined, LineHeightOutlined, MailOutlined, MinusOutlined,
-  NumberOutlined, PhoneOutlined, PicCenterOutlined,
+  NumberOutlined, PhoneOutlined, PicCenterOutlined, SaveOutlined, SignatureOutlined, SwitcherOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
 
@@ -42,6 +42,7 @@ export default function Toolbox() {
         <ToolboxCard icon={NumberOutlined} label="Chiffre" onClick={() => addElement("number")} />
         <ToolboxCard icon={CheckSquareOutlined} label="Choix multiples" onClick={() => addElement("checkbox")} />
         <ToolboxCard icon={CheckCircleOutlined} label="Choix unique" onClick={() => addElement("radio")} />
+        <ToolboxCard icon={SwitcherOutlined} label="Interrupteur" onClick={() => addElement("switch")} />
         <ToolboxCard
           icon={AppstoreOutlined}
           label="Liste déroulante"
@@ -51,6 +52,8 @@ export default function Toolbox() {
         <ToolboxCard icon={ClockCircleOutlined} label="Heure" onClick={() => addElement("time")} />
         <ToolboxCard icon={UploadOutlined} label="Envoi de fichiers" onClick={() => addElement("file")} />
         <ToolboxCard icon={FileImageOutlined} label="Images" onClick={() => addElement("image")} />
+        <ToolboxCard icon={SignatureOutlined} label="Signature électronique" onClick={() => addElement("signature")} />
+        <ToolboxCard icon={SaveOutlined} label="Soumettre" onClick={() => addElement("submit")} />
       </div>
 
     </Card>

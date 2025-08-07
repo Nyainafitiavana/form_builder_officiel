@@ -131,6 +131,17 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         required: false,
         order: nextOrder,
       };
+    } else if (type === "switch") {
+      newElement = {
+        uuid,
+        type: "switch",
+        label: "Interrupteur",
+        name: "interrupteur",
+        checkedChildren: 'Oui',
+        unCheckedChildren: 'Non',
+        required: false,
+        order: nextOrder,
+      };
     } else if (type === "phone") {
       newElement = {
         uuid,
@@ -177,8 +188,17 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         required: false,
         order: nextOrder,
       };
+    } else if (type === "submit") {
+      newElement = {
+        uuid,
+        type: "submit",
+        label: "",
+        name: "submit",
+        buttonText: "Soumettre",
+        order: nextOrder,
+      };
     } else {
-      newElement = { uuid, type, label: `New ${type}`, name: "", required: false, order: nextOrder };
+      newElement = { uuid, type, label: `New ${type}`, name: `new_${type}`, required: false, order: nextOrder };
     }
 
     setElements((prev) => [...prev, newElement]);

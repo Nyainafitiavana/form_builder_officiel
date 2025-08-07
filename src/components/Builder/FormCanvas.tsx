@@ -16,12 +16,14 @@ import {
   Radio,
   Row,
   Select,
-  TimePicker, Upload, UploadFile, Image, UploadProps
+  TimePicker, Upload, UploadFile, Image, UploadProps,
+  Switch
 } from "antd";
 import {useRouter} from "next/navigation";
 import React, {useState} from "react";
 import Dragger from "antd/es/upload/Dragger";
 import Title from "antd/es/typography/Title";
+import SignatureCanvas from "react-signature-canvas";
 
 type GetBase64Fn = (file: File) => Promise<string>;
 
@@ -333,6 +335,53 @@ export default function FormCanvas() {
                           </Card>
                         )}
 
+                        {el.type === 'switch' && (
+                          <Form.Item
+                            key={el.uuid}
+                            name={el.name}
+                            valuePropName="checked"
+                          >
+                            <FormLabel label={el.label} required={el.required} />
+                            <Switch
+                              checkedChildren={el.checkedChildren}
+                              unCheckedChildren={el.unCheckedChildren}
+                            />
+                          </Form.Item>
+                        )}
+
+                        {el.type === 'submit' && (
+                          <Form.Item key={el.uuid}>
+                            <Button type="primary" htmlType="submit">
+                              {el.buttonText || 'Soumettre'}
+                            </Button>
+                          </Form.Item>
+                        )}
+
+                        {el.type === 'signature' && (
+                          <Form.Item
+                            key={el.uuid}
+                          >
+                            <FormLabel label={el.label} required={el.required} />
+                            <div className="p-2">
+                              <SignatureCanvas
+                                ref={(ref) => {
+                                  if (ref) el.ref = ref; // stocker la référence dans l’élément pour futur traitement
+                                }}
+                                penColor="black"
+                                canvasProps={{
+                                  width: 300,
+                                  height: 200,
+                                  className: "sigCanvas border",
+                                }}
+                              />
+                              <div className=" mt-2 text-sm text-gray-500">
+                                <Button onClick={() => el.ref?.clear()} size="small">
+                                  Effacer
+                                </Button>
+                              </div>
+                            </div>
+                          </Form.Item>
+                        )}
 
                       </Col>
                     </Row>

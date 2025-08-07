@@ -65,7 +65,7 @@ export default function PropertiesPanel() {
       label: newLabel,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
   //Met à jour le label d’un champ enfant dans le fieldset
@@ -78,7 +78,7 @@ export default function PropertiesPanel() {
       placeholder: newPlaceholder,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
   //Met à jour le type (input, date, etc.) d’un champ enfant
@@ -91,7 +91,7 @@ export default function PropertiesPanel() {
       type: newType,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
 
@@ -105,7 +105,7 @@ export default function PropertiesPanel() {
       required: required,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
 
@@ -123,7 +123,7 @@ export default function PropertiesPanel() {
     };
 
     const updatedChildren = [...(selected.children || []), newChild];
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
 
@@ -134,7 +134,7 @@ export default function PropertiesPanel() {
     const updatedChildren = [...(selected.children || [])];
     updatedChildren.splice(index, 1);
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
   function updateChildMin(index: number, min: number) {
@@ -146,7 +146,7 @@ export default function PropertiesPanel() {
       min,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
 
   function updateChildMax(index: number, max: number) {
@@ -158,10 +158,8 @@ export default function PropertiesPanel() {
       max,
     };
 
-    updateElement(selected.uuid, { children: updatedChildren });
+    updateElement(selected.uuid, {children: updatedChildren});
   }
-
-
 
 
   if (!selected) return <Card className="text-gray-500 min-h-[800px]">Aucun élément sélectionné</Card>;
@@ -173,10 +171,49 @@ export default function PropertiesPanel() {
       className="space-y-2 rounded shadow p-4 overflow-y-auto min-h-[300px] md:min-h-[400px] lg:min-h-[800px] max-h-[80vh]"
     >
       <div>
-        {selected.type !== "head" && selected.type !== "divider" && (
+        {
+          selected.type !== "head" &&
+          selected.type !== "divider" &&
+          selected.type !== "submit" && (
           <>
             <Input className="mt-4" addonBefore="Label" value={label} onChange={handleLabelChange}/>
             <Input className="mt-4" addonBefore="Name" value={selected.name} disabled/>
+          </>
+        )}
+        
+        {selected.type === "submit" && (
+          <>
+            <Input
+              value={selected.buttonText}
+              onChange={(e) =>
+                updateElement(selected.uuid, { buttonText: e.target.value })
+              }
+              placeholder="Texte du bouton"
+            />
+          </>
+        )}
+
+        {selected.type === "switch" && (
+          <>
+            <Input
+              className="mt-4"
+              addonBefore="Texte ON (checked)"
+              value={selected.checkedChildren}
+              onChange={(e) =>
+                updateElement(selected.uuid, {checkedChildren: e.target.value})
+              }
+              placeholder="Texte ON (checked)"
+            />
+
+            <Input
+              className="mt-4"
+              addonBefore="Texte OFF (unchecked)"
+              value={selected.unCheckedChildren}
+              onChange={(e) =>
+                updateElement(selected.uuid, {unCheckedChildren: e.target.value})
+              }
+              placeholder="Texte OFF (unchecked)"
+            />
           </>
         )}
 
@@ -312,7 +349,7 @@ export default function PropertiesPanel() {
                 </div>
                 <div className="mt-4">
                   <Select
-                    style={{width : '50%'}}
+                    style={{width: '50%'}}
                     value={child.type}
                     onChange={(value) => updateChildType(index, value)}
                     options={[
@@ -323,7 +360,7 @@ export default function PropertiesPanel() {
                   />
                 </div>
                 {child.type === 'number' && (
-                  <div className="mt-4" style={{ display: 'flex', gap: '1rem' }}>
+                  <div className="mt-4" style={{display: 'flex', gap: '1rem'}}>
                     <InputNumber
                       placeholder="Min"
                       value={child.min}
@@ -437,6 +474,9 @@ export default function PropertiesPanel() {
           selected.type !== "file" &&
           selected.type !== "image" &&
           selected.type !== "fieldset" &&
+          selected.type !== "switch" &&
+          selected.type !== "signature" &&
+          selected.type !== "submit" &&
           (
             <Input
               className="mt-4"
@@ -454,20 +494,21 @@ export default function PropertiesPanel() {
           selected.type !== "head" &&
           selected.type !== "divider" &&
           selected.type !== "fieldset" &&
+          selected.type !== "submit" &&
           (
-          <div className="mt-4">
-            <Checkbox
-              checked={selected.required}
-              onChange={(e) =>
-                updateElement(selected.uuid, {
-                  required: e.target.checked,
-                })
-              }
-            >
-              Requis
-            </Checkbox>
-          </div>
-        )}
+            <div className="mt-4">
+              <Checkbox
+                checked={selected.required}
+                onChange={(e) =>
+                  updateElement(selected.uuid, {
+                    required: e.target.checked,
+                  })
+                }
+              >
+                Requis
+              </Checkbox>
+            </div>
+          )}
       </div>
     </Card>
   );
