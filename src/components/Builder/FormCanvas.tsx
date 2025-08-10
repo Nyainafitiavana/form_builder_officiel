@@ -47,7 +47,7 @@ export default function FormCanvas() {
   const handleSaveConfirmed = () => {
     saveToLocalStorage(); // call of context method
     setShowConfirmModal(false);
-    router.push("/"); // redirect to from list
+    // router.push("/"); // redirect to from list
   };
 
   const getBase64: GetBase64Fn = (file: File): Promise<string> =>
@@ -301,7 +301,6 @@ export default function FormCanvas() {
                               {fileList.length >= 8 ? null : uploadButton}
                             </Upload>
                             <Image
-                              alt="image-empty"
                               wrapperStyle={{ display: 'none' }} // skip the automatic preview
                               preview={{
                                 visible: previewOpen,

@@ -4,20 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated fieldset">
+    <list default="true" id="c15fb412-e314-427e-b5c5-89b1b0cfa9d6" name="Changes" comment="integrated signature field">
+      <change afterPath="$PROJECT_DIR$/src/components/Builder/PreviewModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/builder/[uuid]/BuilderPageClient.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/FormCanvas.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/PropertiesPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Builder/Toolbox.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/FormContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/FormContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Form.interface.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,7 +85,9 @@
       <workItem from="1754373180323" duration="11597000" />
       <workItem from="1754416385775" duration="2010000" />
       <workItem from="1754496182429" duration="5569000" />
-      <workItem from="1754538091511" duration="3551000" />
+      <workItem from="1754538091511" duration="3667000" />
+      <workItem from="1754759793787" duration="2723000" />
+      <workItem from="1754815544995" duration="5651000" />
     </task>
     <task id="LOCAL-00001" summary="integrated time element">
       <option name="closed" value="true" />
@@ -107,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754501733689</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="integrated signature field">
+      <option name="closed" value="true" />
+      <created>1754541747265</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754541747265</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +143,7 @@
     <MESSAGE value="integrated time element" />
     <MESSAGE value="integrated upload element" />
     <MESSAGE value="integrated fieldset" />
-    <option name="LAST_COMMIT_MESSAGE" value="integrated fieldset" />
+    <MESSAGE value="integrated signature field" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated signature field" />
   </component>
 </project>

@@ -40,7 +40,16 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
 
   // Save manually to localStorage
   const saveToLocalStorage = () => {
-    const updatedForm: FormInterface = { ...form, elements };
+    // On clone les éléments et on enlève juste la ref (sinon JSON.stringify plante)
+    const cleanedElements = elements.map(el => {
+      if ('ref' in el) {
+        const { ref, ...rest } = el;
+        return rest;
+      }
+      return el;
+    });
+
+    const updatedForm: FormInterface = { ...form, elements: cleanedElements };
     const forms: FormInterface[] = JSON.parse(localStorage.getItem("forms") || "[]");
     const updatedForms = forms.map((f) => (f.uuid === form.uuid ? updatedForm : f));
     localStorage.setItem("forms", JSON.stringify(updatedForms));

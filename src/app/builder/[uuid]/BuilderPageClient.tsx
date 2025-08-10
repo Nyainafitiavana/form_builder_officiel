@@ -7,11 +7,13 @@ import { FormProvider } from "@/context/FormContext";
 import Toolbox from "@/components/Builder/Toolbox";
 import FormCanvas from "@/components/Builder/FormCanvas";
 import PropertiesPanel from "@/components/Builder/PropertiesPanel";
-import {Col, Layout, Row} from "antd";
-import {Content} from "antd/es/layout/layout";
+import {Button, Card, Col, Layout, Row, Space} from "antd";
+import {Content, Header} from "antd/es/layout/layout";
+import PreviewModal from "@/components/Builder/PreviewModal";
 
 export default function BuilderPageClient({ uuid }: { uuid: string }) {
   const [form, setForm] = useState<FormInterface | null>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const router = useRouter();
 
   // Load form from localStorage
@@ -31,6 +33,19 @@ export default function BuilderPageClient({ uuid }: { uuid: string }) {
   return (
     <FormProvider form={form}>
       <Layout style={{ minHeight: "100vh", padding: 24 }}>
+        <Card style={{ borderBottom: "1px solid #f0f0f0" }}>
+          <div style={{ background: "none", display: "flex", justifyContent: "end", alignItems: "center" }}>
+            <div>
+              <Space>
+                <Button onClick={() => router.back()}>Retour</Button>
+                {/* Bouton Preview */}
+                <Button type="primary" onClick={() => setIsPreviewOpen(true)}>
+                  Preview
+                </Button>
+              </Space>
+            </div>
+          </div>
+        </Card>
         <Content>
           <Row gutter={[16, 16]}>
             <Col xs={24} lg={5}>
@@ -45,6 +60,7 @@ export default function BuilderPageClient({ uuid }: { uuid: string }) {
           </Row>
         </Content>
       </Layout>
+      <PreviewModal open={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} />
     </FormProvider>
   );
 }
