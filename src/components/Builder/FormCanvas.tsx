@@ -17,7 +17,8 @@ import {
   Row,
   Select,
   TimePicker, Upload, UploadFile, Image, UploadProps,
-  Switch
+  Switch,
+  Flex
 } from "antd";
 import {useRouter} from "next/navigation";
 import React, {useState} from "react";
@@ -313,7 +314,7 @@ export default function FormCanvas() {
                         )}
 
                         {el.type === 'fieldset' && (
-                          <Card title={el.label} style={{ marginBottom: '1rem' }}>
+                          <Card title={el.label} style={{ marginTop: '20px', marginBottom: '1rem' }}>
                             {el.children?.map((child, index) => (
                               <Form.Item key={child.uuid}>
                                 <FormLabel label={child.label} required={child.required} />
@@ -350,9 +351,9 @@ export default function FormCanvas() {
 
                         {el.type === 'submit' && (
                           <Form.Item key={el.uuid}>
-                            <Button type="primary" htmlType="submit">
-                              {el.buttonText || 'Soumettre'}
-                            </Button>
+                              <Button block={el.buttonWidth === 'Full'} type="primary" htmlType="submit" style={{ marginTop: "20px" }}>
+                                {el.buttonText || 'Soumettre'}
+                              </Button>
                           </Form.Item>
                         )}
 
@@ -392,7 +393,7 @@ export default function FormCanvas() {
           {/* Bouton Sauvegarde */}
           <Row justify="end" className="mt-4">
             <Col>
-              <Button type="primary" onClick={() => setShowConfirmModal(true)}>
+              <Button block color="cyan" variant="solid" onClick={() => setShowConfirmModal(true)}>
                 Sauvegarder
               </Button>
             </Col>

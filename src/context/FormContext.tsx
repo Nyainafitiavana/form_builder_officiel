@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, {createContext, useContext, useState, useEffect, ReactNode, useCallback} from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FormInterface, FormElement } from "@/interfaces/Form.interface";
 
@@ -38,22 +38,26 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
     setElements(form.elements || []);
   }, [form]);
 
-  // Save manually to localStorage
-  const saveToLocalStorage = () => {
-    // On clone les éléments et on enlève juste la ref (sinon JSON.stringify plante)
-    const cleanedElements = elements.map(el => {
-      if ('ref' in el) {
-        const { ref, ...rest } = el;
-        return rest;
-      }
-      return el;
-    });
+  // Sync form.elements à chaque changement d'elements
+  useEffect(() => {
+    if (form) {
+      form.elements = elements;
+    }
+  }, [elements, form]);
 
+
+  // Save manually to localStorage
+  const saveToLocalStorage = useCallback(() => {
+    const cleanedElements = elements.map(({ ref, ...rest }) => rest);
     const updatedForm: FormInterface = { ...form, elements: cleanedElements };
     const forms: FormInterface[] = JSON.parse(localStorage.getItem("forms") || "[]");
     const updatedForms = forms.map((f) => (f.uuid === form.uuid ? updatedForm : f));
     localStorage.setItem("forms", JSON.stringify(updatedForms));
-  };
+  }, [form, elements]);
+
+  useEffect(() => {
+    saveToLocalStorage();
+  }, [saveToLocalStorage]);
 
   const addElement = (type: FormElement["type"]) => {
     const uuid = uuidv4();
@@ -204,6 +208,7 @@ export const FormProvider = ({ children, form }: FormProviderProps) => {
         label: "",
         name: "submit",
         buttonText: "Soumettre",
+        buttonWidth: "Normal",
         order: nextOrder,
       };
     } else {

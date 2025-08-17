@@ -186,10 +186,24 @@ export default function PropertiesPanel() {
             <Input
               value={selected.buttonText}
               onChange={(e) =>
-                updateElement(selected.uuid, { buttonText: e.target.value })
+                updateElement(selected.uuid, {buttonText: e.target.value})
               }
               placeholder="Texte du bouton"
             />
+
+            <div className="mt-4">
+              <h3 className="font-semibold">Taille</h3>
+              <Switch
+                checked={selected.buttonWidth !== "Normal"}
+                onChange={(checked) =>
+                  updateElement(selected.uuid, {
+                    buttonWidth: checked ? "Full" : "Normal",
+                  })
+                }
+                checkedChildren="Full"
+                unCheckedChildren="Normal"
+              />
+            </div>
           </>
         )}
 

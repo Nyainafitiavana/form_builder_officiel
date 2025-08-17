@@ -55,6 +55,7 @@ export interface FormElement {
   min?: number;// pour les champs number
   max?: number;// pour les champs number
   buttonText?: string;
+  buttonWidth?: "Normal" | "Full";
   // seulement pour les signatures
   ref?: SignatureCanvas | null;
 }

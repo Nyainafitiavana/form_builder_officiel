@@ -17,9 +17,11 @@ import {
   Divider,
   message,
 } from "antd";
-import { DesktopOutlined, TabletOutlined, MobileOutlined } from "@ant-design/icons";
+import {DesktopOutlined, TabletOutlined, MobileOutlined, InboxOutlined} from "@ant-design/icons";
 import { useFormContext } from "@/context/FormContext";
 import { FormElement } from "@/interfaces/Form.interface";
+import Dragger from "antd/es/upload/Dragger";
+import SignatureCanvas from "react-signature-canvas";
 
 type Device = "desktop" | "tablet" | "mobile";
 
@@ -56,7 +58,7 @@ export default function PreviewModal({ open, onClose }: { open: boolean; onClose
     switch (el.type) {
       case "head":
         return (
-          <div key={el.uuid} style={{ margin: "12px 0" }}>
+          <div key={el.uuid} className={`w-full my-4 text-${el.align}`}>
             <h2 className="text-2xl font-bold">{el.title}</h2>
             {el.description && <p className="text-gray-600">{el.description}</p>}
           </div>
@@ -139,6 +141,25 @@ export default function PreviewModal({ open, onClose }: { open: boolean; onClose
         );
 
       case "file":
+        return (
+          <Form.Item key={el.uuid} name={name} label={el.label} rules={rules}>
+            <Dragger
+              name={el.name}
+              multiple
+              beforeUpload={() => false} // désactive l'upload réel
+              listType="text"
+            >
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p className="ant-upload-text">Cliquez ou glissez un fichier ici</p>
+              <p className="ant-upload-hint">
+                Vous pouvez sélectionner plusieurs fichiers. Les données sensibles sont interdites.
+              </p>
+            </Dragger>
+          </Form.Item>
+        );
+
       case "image":
         return (
           <Form.Item key={el.uuid} name={name} label={el.label} rules={rules}>
@@ -172,9 +193,24 @@ export default function PreviewModal({ open, onClose }: { open: boolean; onClose
 
       case "signature":
         return (
-          <Form.Item key={el.uuid} label={el.label}>
-            <div style={{ height: 120, border: "1px dashed #ddd", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ color: "#888" }}>Signature (aperçu)</span>
+          <Form.Item key={el.uuid} label={el.label} required={el.required}>
+            <div className="p-2">
+              <SignatureCanvas
+                ref={(ref) => {
+                  if (ref) el.ref = ref; // stocker la ref aussi dans le mode preview
+                }}
+                penColor="black"
+                canvasProps={{
+                  width: 300,
+                  height: 200,
+                  className: "sigCanvas border",
+                }}
+              />
+              <div className="mt-2 text-sm text-gray-500">
+                <Button onClick={() => el.ref?.clear()} size="small">
+                  Effacer
+                </Button>
+              </div>
             </div>
           </Form.Item>
         );
@@ -182,7 +218,7 @@ export default function PreviewModal({ open, onClose }: { open: boolean; onClose
       case "submit":
         return (
           <Form.Item key={el.uuid}>
-            <Button type="primary" htmlType="submit">
+            <Button block={el.buttonWidth === 'Full'} type="primary" htmlType="submit">
               {el.buttonText || "Envoyer"}
             </Button>
           </Form.Item>
@@ -238,8 +274,8 @@ export default function PreviewModal({ open, onClose }: { open: boolean; onClose
           overflowY: "auto",
         }}
       >
-        {form?.name && <h3 style={{ marginTop: 0 }}>{form.name}</h3>}
-        {form?.description && <p style={{ color: "#666" }}>{form.description}</p>}
+        {/*{form?.name && <h3 style={{ marginTop: 0 }}>{form.name}</h3>}*/}
+        {/*{form?.description && <p style={{ color: "#666" }}>{form.description}</p>}*/}
 
         <Form layout="vertical" onFinish={(values) => { console.log("Preview values:", values); message.success("Ceci est une preview — pas d'enregistrement"); }}>
           {(form?.elements || [])
